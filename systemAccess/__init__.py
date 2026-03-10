@@ -1,7 +1,6 @@
-"""fastauth package."""
+"""systemAccess package."""
 
 __all__ = [
-    "auth",
     "core",
     "dependencies",
     "api",
