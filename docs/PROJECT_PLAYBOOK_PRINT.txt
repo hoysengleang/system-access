@@ -1,0 +1,187 @@
+SYSTEM ACCESS ENGINEERING PLAYBOOK
+Version: 1.0
+Date: 2026-03-11
+
+============================================================
+TABLE OF CONTENTS
+============================================================
+1. Project Mission
+2. Current Scope
+3. Architecture Snapshot
+4. Environment Setup
+5. Dependency Book
+6. Daily Workflow
+7. Milestones and Delivery Plan
+8. Quality and Review Checklist
+9. Troubleshooting Log
+10. Command Reference
+
+
+============================================================
+1. PROJECT MISSION
+============================================================
+Build a stable Python package and API foundation for System Access
+with reliable setup, clear dependency management, and repeatable
+team workflow.
+
+Success Criteria:
+- Package metadata is valid and maintainable.
+- Local install works in one chosen virtual environment.
+- API server starts consistently with uvicorn.
+- Team members can onboard from one document.
+
+
+============================================================
+2. CURRENT SCOPE
+============================================================
+In Scope:
+- Package structure under systemAccess/
+- Project metadata in pyproject.toml
+- Runtime dependencies in docs/dependency/requirement.txt
+- API entrypoint in systemAccess/__main__.py
+
+Out of Scope (Now):
+- Full authentication logic
+- Production deployment pipeline
+- Large database integration
+
+
+============================================================
+3. ARCHITECTURE SNAPSHOT
+============================================================
+Main Folders:
+- systemAccess/                         Python package modules
+- tests/                                test files
+- docs/                                 project documentation
+- docs/dependency/requirement.txt       pip dependency list
+
+Minimal Runtime Flow:
+1) Activate virtual environment (venv recommended)
+2) Install package and dependencies
+3) Run API with uvicorn
+4) Run tests and fix regressions
+
+
+============================================================
+4. ENVIRONMENT SETUP
+============================================================
+Standard:
+- Keep only one environment: venv/
+- Avoid switching between venv and .venv in one project
+
+Setup Commands:
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade pip
+pip install -r docs/dependency/requirement.txt
+pip install -e .
+
+Run API:
+uvicorn systemAccess.__main__:app --port 1111 --reload
+
+
+============================================================
+5. DEPENDENCY BOOK
+============================================================
+Current dependency list:
+- fastapi
+- uvicorn
+- pydantic
+- python-dotenv>=1.0.1,<2.0.0
+- typing-extensions>=4.10.0,<5.0.0
+
+Dependency policy:
+1) Add package to docs/dependency/requirement.txt
+2) If runtime dependency, add it to pyproject.toml
+3) Install and test locally
+4) Log major dependency issues in troubleshooting section
+
+
+============================================================
+6. DAILY WORKFLOW
+============================================================
+Daily Start:
+1) Pull latest changes
+2) Activate venv
+3) Sync dependencies when files changed
+4) Run app and tests
+
+Daily Close:
+1) Update docs if workflow changed
+2) Update issue log with unresolved blockers
+3) Commit with clear message
+
+Status Template:
+- Today goal:
+- Done:
+- Blockers:
+- Next action:
+
+
+============================================================
+7. MILESTONES AND DELIVERY PLAN
+============================================================
+Milestone A: Foundation
+[ ] Package skeleton finalized
+[ ] pyproject.toml validated
+[ ] Local install confirmed
+
+Milestone B: API Baseline
+[ ] Health route and versioned routes
+[ ] Shared config loader
+[ ] Error handling baseline
+
+Milestone C: Auth Baseline
+[ ] Auth schemas
+[ ] Auth service layer
+[ ] Auth endpoint tests
+
+
+============================================================
+8. QUALITY AND REVIEW CHECKLIST
+============================================================
+Before Commit:
+[ ] App starts without import errors
+[ ] Dependencies are documented
+[ ] No secrets committed
+[ ] Basic tests added for new behavior
+[ ] Docs updated for changed workflow
+
+Before Release:
+[ ] Version updated
+[ ] Release notes prepared
+[ ] Install tested in clean environment
+
+
+============================================================
+9. TROUBLESHOOTING LOG
+============================================================
+Use this log format:
+Date | Problem | Root Cause | Fix | Prevention
+
+Example:
+YYYY-MM-DD | LSP codeAction failed (-32603) |
+Interpreter mismatch | Select venv interpreter and reload editor |
+Keep one virtual environment
+
+YYYY-MM-DD | uvicorn __main__:app failed |
+Wrong module path | Use uvicorn systemAccess.__main__:app |
+Standardize command docs
+
+
+============================================================
+10. COMMAND REFERENCE
+============================================================
+Environment:
+source venv/bin/activate
+
+Install:
+pip install -r docs/dependency/requirement.txt
+pip install -e .
+
+Run:
+uvicorn systemAccess.__main__:app --port 1111 --reload
+
+Quick check:
+python -c "import pydantic, fastapi, uvicorn; print('deps-ok')"
+python -m pip check
