@@ -3,14 +3,19 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "fastauth"
+name = "system-access"
+
 version = "0.1.0"
-description = "FastAuth package skeleton"
+description = "System Access package skeleton"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [
-  { name = "FastAuth Team" }
+  { name = "System Access Team" }
+]
+dependencies = [
+  "python-dotenv>=1.0.1,<2.0.0",
+  "typing-extensions>=4.10.0,<5.0.0",
 ]
 
 [tool.setuptools.packages.find]
-include = ["fastauth*"]
+include = ["systemAccess*"]

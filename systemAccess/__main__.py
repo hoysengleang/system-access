@@ -1,9 +1,7 @@
-"""Module entry point for local execution."""
+from fastapi import FastAPI
 
+app = FastAPI()
 
-def main() -> None:
-    print("fastauth package skeleton is ready")
-
-
-if __name__ == "__main__":
-    main()
+@app.get("/health")
+def health_check():
+    return {"status": "healthy"}
